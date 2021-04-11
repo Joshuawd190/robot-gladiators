@@ -202,9 +202,34 @@ var endGame = function () {
         playerInfo.money +
         "."
     );
+    var playerScore = playerInfo.money;
+    var highscore = localStorage.getItem("highscore");
+    var highscoreName = localStorage.getItem("highscoreName");
+    if (highscore === null) {
+      highscore = 0;
+    }
+    if (playerScore > highscore) {
+      localStorage.setItem("highscore", playerScore);
+      localStorage.setItem("highscoreName", playerInfo.name);
+
+      window.alert(
+        "Congradulations on a new high score!" +
+          highscoreName +
+          " : " +
+          highscore
+      );
+    } else {
+      window.alert(
+        "You did not beat the high score! Try again to beat: " +
+          highscoreName +
+          " : " +
+          highscore
+      );
+    }
   } else {
     window.alert("You've lost your robot in battle.");
   }
+
   var playAgainConfirm = window.confirm("Would you like to play again?");
   if (playAgainConfirm) {
     // restart the game
